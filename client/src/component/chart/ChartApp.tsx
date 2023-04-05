@@ -46,9 +46,14 @@ const ShowButton = styled.button`
     margin-left: 20px;
     border-radius: 10px;
     border: none;
-    background: #2E2EFE;
-    color: white;
+    background: rgb(112, 76, 182, 0.1);
+    font-size: 15px;
+    font-weight: bold;
     cursor: pointer;
+    &: hover {
+        color: white;
+        background: rgb(112, 76, 182);
+    }
 `
 
 const ChartApp = () => {

@@ -1,6 +1,6 @@
 import React from 'react';
 import Counter from './page/Counter';
-import { Routes, Route, Link } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import Todo from './page/Todo';
 import Board from './page/Board';
 import styled, { createGlobalStyle } from 'styled-components';
@@ -24,7 +24,7 @@ function App() {
 
       <SideBar />
       <Routes>
-        <Route path="/" element={<Todo />} />
+        <Route path="/" element={<Navigate to="/todo" />} />
         <Route path="/counter" element={<Counter />} />
         <Route path="/todo" element={<Todo />} />
         <Route path="/board" element={<Board />} />

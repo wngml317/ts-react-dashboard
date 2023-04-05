@@ -10,10 +10,14 @@ const TodoTemplateBlock = styled.div`
     width: 512px;
     height: 768px;
 
+    position: relative;
+
     border-radius: 15px;
     background: white;
-
-    margin: 0 auto;
+    
+    margin: 50px auto;
+    justify-content: center;
+    flex-direction: column;
 `
 
 const TodoApp = () => {

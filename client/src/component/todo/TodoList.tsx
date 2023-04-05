@@ -4,8 +4,7 @@ import TodoItem from "./TodoItem";
 import styled from "styled-components";
 
 const TodoListBlock = styled.div`
-    // flex: 1;
-    padding: 15px;
+    padding: 30px;
 `
 
 interface TodoListProps {
