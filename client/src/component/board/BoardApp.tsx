@@ -15,7 +15,7 @@ const BoardApp = () => {
         <div>
             <BoardCreate />
             {boardList.map(board => 
-            <ul>
+            <ul key={board._id}>
                 <div> user: {board.user} </div>
                 <div> title: {board.title} </div>
                 <div> content: {board.content} </div>    

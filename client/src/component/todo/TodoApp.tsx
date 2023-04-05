@@ -24,8 +24,6 @@ const TodoApp = () => {
         dispatch(todoAllAsync());
     }, [dispatch]);
 
-    console.log(todoList)
-
     const onToggle = (data: Todo) => {
         dispatch(todoUpdateAsync(data));
     }

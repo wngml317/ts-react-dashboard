@@ -26,7 +26,7 @@ const TodoItemBlock = styled.div`
         }
     }
 `
-const CheckCircle = styled.div<{done: Boolean}>`
+const CheckCircle = styled.div<{done?: Boolean}>`
     width: 32px;
     height: 32px;
     border-radius: 16px;
@@ -47,7 +47,7 @@ const CheckCircle = styled.div<{done: Boolean}>`
         `}
 
 `
-const Text = styled.div<{done: Boolean}>`
+const Text = styled.div<{done?: Boolean}>`
     flex: 1;
     font-size: 21px;
     color: #495057;

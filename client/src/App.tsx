@@ -3,28 +3,34 @@ import Counter from './page/Counter';
 import { Routes, Route, Link } from 'react-router-dom';
 import Todo from './page/Todo';
 import Board from './page/Board';
-import { createGlobalStyle } from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
+import Chart from './page/Chart';
+import SideBar from './component/navigation/SideBar';
 
 const GlobalStyle = createGlobalStyle`
   body {
     background: #e9ecef;
+    margin: 0
   }
 `;
-
+const Main = styled.div`
+  display: flex;
+`
 function App() {
   return (
     <div>
       <GlobalStyle />
-      <ul>
-        <Link to="/counter"><li>카운터</li></Link>
-        <Link to="/todo"><li>투두리스트</li></Link>
-        <Link to="/board"><li>게시판</li></Link>
-      </ul>
+      <Main>
+
+      <SideBar />
       <Routes>
+        <Route path="/" element={<Todo />} />
         <Route path="/counter" element={<Counter />} />
         <Route path="/todo" element={<Todo />} />
         <Route path="/board" element={<Board />} />
+        <Route path="/chart" element={<Chart />} />
       </Routes>
+      </Main>
     </div>
   );
 }

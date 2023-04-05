@@ -14,6 +14,9 @@ interface TodoListProps {
     onRemove: (_id: String) => void;
 }
 const TodoList = ({todoList, onToggle, onRemove}: TodoListProps) => {
+    if( todoList.length === 0) {
+        return <div>등록된 일정이 없습니다.</div>
+    }
     return (
         <TodoListBlock>
             {todoList.map(
