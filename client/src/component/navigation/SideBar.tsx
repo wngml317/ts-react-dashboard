@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import styled, { css } from "styled-components"
 
 const Navbar = styled.nav`
@@ -14,14 +14,13 @@ const List = styled.div`
     list-style: none;
 `
 const PageLink = styled.a<{active: Boolean}>`
-    
     display: block;
+    // font-size: 18px;
     margin: 0 calc(20px * -1);
     color: white;
     padding: 12px 20px;
     text-decoration: none;
     border-radius: 4px;
-
     ${(props) => 
         props.active && 
         css`
@@ -29,8 +28,8 @@ const PageLink = styled.a<{active: Boolean}>`
             font-weight: bold;
         `
     }
-
     &:hover {
+        color: white;
         background: #ff8906;
         transform: translateY(-2px);
         transition: 1s;
@@ -47,10 +46,9 @@ const SideBar = () => {
     return (
         <Navbar>
             <List>
-                <PageLink href="/counter" active={location.pathname.includes("/counter")}>카운터</PageLink>
-                <PageLink href="/todo" active={location.pathname.includes("/todo")}>투두리스트</PageLink>
-                <PageLink href="/board" active={location.pathname.includes("/board")}>게시판</PageLink>
-                <PageLink href="/chart" active={location.pathname.includes("/chart")}>차트</PageLink>
+                <PageLink href="/todo" active={location.pathname.includes("/todo")}>TodoList</PageLink>
+                <PageLink href="/counter" active={location.pathname.includes("/counter")}>Counter</PageLink>
+                <PageLink href="/chart" active={location.pathname.includes("/chart")}>Chart</PageLink>
             </List>
         </Navbar>
     )

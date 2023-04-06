@@ -3,9 +3,9 @@ import axios from "axios";
 import { RootState } from "../app/store";
 
 export interface Todo {
-    _id?: any;
+    _id: any;
     text?: String;
-    done?: Boolean;
+    done: Boolean;
 }
 export interface todoState {
     todoList: Todo[];
@@ -16,9 +16,9 @@ const initialState: todoState = {
 }
 
 export const todoAddAsync = createAsyncThunk(
-    "todo/todoAdd",
-    async (text: Todo) => {
-        const result = await axios.post("/api/todo/add", text)
+    "todo/todoAdd", // 액션 이름 정의
+    async (text: String) => {   // 비동기 호출 함수 정의
+        const result = await axios.post("/api/todo/add", {text: text})
         return result.data.todo;
     }
 )
@@ -45,13 +45,19 @@ export const todoRemoveAsync = createAsyncThunk(
     }
 )
 
+// 상태 슬라이스 생성
+// 기존 : 액션 타입과 액션생성함수을 선언해 사용
+// createSlice: 액션을 선언하고 해당 액션이 dispatch 되면 바로 state를 가지고 해당 액션 처리
 export const todoSlice = createSlice({
-    name: "todo",
-    initialState,
+    name: "todo",   // 문자열 이름 (액션 타입의 이름이 중복되는 것을 막기위한 네임값)
+    initialState,   // 초기 상태 값
+    // 상태 업데이트 방법을 정의하는 리듀서 함수
     reducers: {
     },
     extraReducers: (builder) => {
         builder
+        // createAsyncThunk를  선언하게 되면 첫번째 파라미터로 선언한 액션 이름의 상태에 대한 action 자동으로 생성
+        // pending: 비동기 호출전, fulfilled: 비동기 호출성공, rejected: 비동기 호출실패
         .addCase(todoAddAsync.fulfilled, (state, action) => {
             state.todoList = state.todoList.concat(action.payload);
         })

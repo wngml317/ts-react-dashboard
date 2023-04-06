@@ -1,6 +1,6 @@
 import React, { ChangeEvent, FormEvent, useState } from "react";
 import { useAppDispatch } from "../../app/hook";
-import { Todo, todoAddAsync } from "../../slice/todoSlice";
+import { todoAddAsync } from "../../slice/todoSlice";
 import styled, { css } from "styled-components";
 import { MdAdd } from "react-icons/md";
 
@@ -98,7 +98,7 @@ const TodoCreate = () => {
     }
     const onSubmit = (e: FormEvent) => {
         e.preventDefault()
-        dispatch(todoAddAsync({"text": text}));
+        dispatch(todoAddAsync(text));
         setText('');
     } 
     return (

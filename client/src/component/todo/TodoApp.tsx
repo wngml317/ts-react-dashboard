@@ -21,9 +21,14 @@ const TodoTemplateBlock = styled.div`
 `
 
 const TodoApp = () => {
+    // const dispatch = useDispatch<AppDispatch>()
     const dispatch = useAppDispatch();
+    // const todoList = useSelector((state: RootState) => state.todo.todoList)
     const todoList = useAppSelector(selectTodo);
 
+    // 리액트는 컴포넌트가 유지되는 한 dispatch 함수가 항상 같다는 것을 보장
+    // 해당 함수는 컴포넌트가 업데이트 되는 경우가 아닌
+    // 마운트되는 경우에만 호출
     useEffect(() => {
         dispatch(todoAllAsync());
     }, [dispatch]);

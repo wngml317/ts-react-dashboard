@@ -45,10 +45,19 @@ export const chartSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
+        // pending: 비동기 호출전, fulfilled: 비동기 호출성공, rejected: 비동기 호출실패
+        // .addCase(dataSelectLineAsync.pending, (state) => {
+        //     state.labels = []
+        //     state.datasets = [];
+        // })
         .addCase(dataSelectLineAsync.fulfilled, (state, action) => {
             state.labels = action.payload.labels;
             state.datasets = action.payload.datasets;
         })
+        // .addCase(dataSelectMultiAsync.pending, (state) => {
+        //     state.labels = []
+        //     state.datasets = [];
+        // })
         .addCase(dataSelectMultiAsync.fulfilled, (state, action) => {
             state.labels = action.payload.labels;
             state.datasets = action.payload.datasets;

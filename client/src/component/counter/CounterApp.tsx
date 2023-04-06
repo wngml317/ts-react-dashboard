@@ -1,24 +1,28 @@
-import React from "react";
+import React, { useState, ChangeEvent } from "react";
 import { useAppDispatch, useAppSelector } from "../../app/hook";
-import { decrease, increase, selectCount } from "../../slice/counterSlice";
+import { decrease, increase, increaseByAmount, selectCount } from "../../slice/counterSlice";
 import styled from "styled-components";
-
-const CounterBolck = styled.div`
-    margin: 30px auto;
+const Test = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+`
+const CounterBlock = styled.div`
+    display: flex;
+    margin: 0 auto ;
+    margin-top: 20px;
     align-items: center;
     justify-content: center
 `
 const TextBox = styled.div`
     font-size: 40px;
     font-weight: bold; 
-    text-align: center;
-    align-items: center;
-    justify-content: center
+    // text-align: center;
+    // align-items: center;
+    // justify-content: center
 `
 const Button = styled.button`
-    // display: flex
     margin: 30px;
-    // align-items: center;
     padding: 10px 20px;
     font-size: 30px;
     cursor: pointer;
@@ -26,22 +30,47 @@ const Button = styled.button`
     border-radius: 2px;
     border: none;
     &: hover {
-        
         background-color: rgb(112, 76, 182);
     }
 
+`
+const Input = styled.input`
+margin-left: 30px;
+    font-size: 20px;
+    padding: 15px;
+    border: none;
+    width: 20%
 `
 
 const CounterApp = () => {
     const count = useAppSelector(selectCount);
     const dispatch = useAppDispatch();
 
+    const [number, setNumber] = useState(2)
+    const onChange = (e: ChangeEvent<HTMLInputElement>) => {
+        setNumber(parseInt(e.target.value));
+    }
     return (
-        <CounterBolck>
-            <TextBox>{count}</TextBox>
-            <Button onClick={() => dispatch(increase())}>+1</Button>
-            <Button onClick={() => dispatch(decrease())}>-1</Button>
-        </CounterBolck>
+        // <CounterBlock>
+        //     <Button onClick={() => dispatch(increase())}>+</Button>
+        //     <TextBox>{count}</TextBox>
+        //     <Button onClick={() => dispatch(decrease())}>-</Button>
+        //     <Input type="number" value={number} onChange={onChange} />
+        //     <Button onClick={() => dispatch(increaseByAmount(number))}>+</Button>
+        // </CounterBlock>
+        <Test>
+            <CounterBlock>
+                <Button onClick={() => dispatch(increase())}>+</Button>
+                <TextBox>{count}</TextBox>
+                <Button onClick={() => dispatch(decrease())}>-</Button>
+            </CounterBlock>
+            <CounterBlock>
+
+                <Input type="number" value={number} onChange={onChange} />
+                <Button onClick={() => dispatch(increaseByAmount(number))}>+</Button>
+            </CounterBlock>
+
+        </Test>
     )
 }
 

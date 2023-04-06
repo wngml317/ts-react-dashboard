@@ -48,7 +48,6 @@ const MultiChart = ({chartData}: ChartProps) => {
         labels: chartData.labels,
         datasets: chartData.datasets.map((dataset, i) => ({
             type: dataset.type as ChartType,
-            // type: 'line' as ChartType,
             label: dataset.label,
             data: dataset.data,
             borderColor: colors[i],
@@ -56,11 +55,9 @@ const MultiChart = ({chartData}: ChartProps) => {
         }))
     }
     return(
-        <>
-            <ChartContainer>
-                <Chart type='bar' data={data} />
-            </ChartContainer>
-        </>
+        <ChartContainer>
+            <Chart type='bar' data={data} />
+        </ChartContainer>
     )
 }
 

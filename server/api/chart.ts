@@ -29,9 +29,9 @@ export const dataSelectLine = async (req: Request, res: Response) => {
             $sort: { date: 1 }
         }
     ]);
-    let labels: string[] = [];
-    let value1: number[] = [];
-    let value2: number[] = [];
+    const labels: string[] = [];
+    const value1: number[] = [];
+    const value2: number[] = [];
 
     for (let i of data) {
         labels.push(i.date);
@@ -68,9 +68,9 @@ export const dataSelectMulti = async (req: Request, res: Response) => {
             $sort: { date: 1 }
         }
     ]);
-    let labels: string[] = [];
-    let value1: number[] = [];
-    let value2: number[] = [];
+    const labels: string[] = [];
+    const value1: number[] = [];
+    const value2: number[] = [];
 
     for (let i of data) {
         labels.push(i.date);

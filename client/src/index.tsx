@@ -10,12 +10,11 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <BrowserRouter>
-    <React.StrictMode>
+      {/* Redux 스토어 제공 */}
+      {/* Provider 는 리액트 앱에 store를 손쉽게 연동할 수 있도록 도와주는 컴포넌트 */}
       <Provider store={store}>
-
         <App />
       </Provider>
-    </React.StrictMode>
   </BrowserRouter>
 );
 
