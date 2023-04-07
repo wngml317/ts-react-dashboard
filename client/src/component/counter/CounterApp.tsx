@@ -1,7 +1,8 @@
 import React, { useState, ChangeEvent } from "react";
-import { useAppDispatch, useAppSelector } from "../../app/hook";
+import { useAppSelector } from "../../app/hook";
 import { decrease, increase, increaseByAmount, selectCount } from "../../slice/counterSlice";
 import styled from "styled-components";
+import { useDispatch } from "react-redux"
 const CounterTemplate = styled.div`
     width: 100%;
     display: flex;
@@ -44,7 +45,7 @@ margin-left: 30px;
 
 const CounterApp = () => {
     const count = useAppSelector(selectCount);
-    const dispatch = useAppDispatch();
+    const dispatch = useDispatch();
 
     const [number, setNumber] = useState(2)
     const onChange = (e: ChangeEvent<HTMLInputElement>) => {
