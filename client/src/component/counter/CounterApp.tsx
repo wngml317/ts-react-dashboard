@@ -2,7 +2,7 @@ import React, { useState, ChangeEvent } from "react";
 import { useAppDispatch, useAppSelector } from "../../app/hook";
 import { decrease, increase, increaseByAmount, selectCount } from "../../slice/counterSlice";
 import styled from "styled-components";
-const Test = styled.div`
+const CounterTemplate = styled.div`
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -51,26 +51,18 @@ const CounterApp = () => {
         setNumber(parseInt(e.target.value));
     }
     return (
-        // <CounterBlock>
-        //     <Button onClick={() => dispatch(increase())}>+</Button>
-        //     <TextBox>{count}</TextBox>
-        //     <Button onClick={() => dispatch(decrease())}>-</Button>
-        //     <Input type="number" value={number} onChange={onChange} />
-        //     <Button onClick={() => dispatch(increaseByAmount(number))}>+</Button>
-        // </CounterBlock>
-        <Test>
+        <CounterTemplate>
             <CounterBlock>
                 <Button onClick={() => dispatch(increase())}>+</Button>
                 <TextBox>{count}</TextBox>
                 <Button onClick={() => dispatch(decrease())}>-</Button>
             </CounterBlock>
             <CounterBlock>
-
                 <Input type="number" value={number} onChange={onChange} />
                 <Button onClick={() => dispatch(increaseByAmount(number))}>+</Button>
             </CounterBlock>
 
-        </Test>
+        </CounterTemplate>
     )
 }
 

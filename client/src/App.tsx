@@ -20,14 +20,13 @@ function App() {
     <div>
       <GlobalStyle />
       <Main>
-
-      <SideBar />
-      <Routes>
-        <Route path="/" element={<Navigate to="/todo" />} />
-        <Route path="/counter" element={<Counter />} />
-        <Route path="/todo" element={<Todo />} />
-        <Route path="/chart" element={<Chart />} />
-      </Routes>
+        <SideBar />
+        <Routes>
+          <Route path="/" element={<Navigate to="/todo" />} />
+          <Route path="/counter" element={<Counter />} />
+          <Route path="/todo" element={<Todo />} />
+          <Route path="/chart" element={<Chart />} />
+        </Routes>
       </Main>
     </div>
   );

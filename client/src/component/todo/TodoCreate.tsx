@@ -102,10 +102,6 @@ const TodoCreate = () => {
         setText('');
     } 
     return (
-        // <div>
-        //     <input placeholder="할 일 입력" value={text} onChange={onChange} />
-        //     <button onClick={() => onSave()}>저장</button>
-        // </div>
         <>
             { open && (
                 <InsertFormPositioner>

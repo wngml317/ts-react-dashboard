@@ -11,13 +11,11 @@ import {
     Legend,
     LineController,
     BarController,
-    // registerables,
     ChartType
 } from "chart.js";
 import styled from "styled-components";
 import { ChartState } from "../../slice/chartSlice";
 
-// ChartJS.register(...registerables);
 ChartJS.register(
     CategoryScale,
     LinearScale,
