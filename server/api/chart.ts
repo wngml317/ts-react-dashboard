@@ -1,9 +1,15 @@
 import { Request, Response } from "express";
-import CHART from "../model/CHART";
+import CHART, { ChartSchema } from "../model/CHART";
+import { dbClose, dbConnect } from "../connect/connect";
+import mongoose, { Connection } from "mongoose";
 
+
+mongoose.pluralize(null);
 export const dataAdd = async (req: Request, res: Response) => {
+    const conn = await dbConnect();
     const data = new CHART(req.body);
     await data.save();
+    await dbClose(conn);
     return res.status(200).json({
         message: "저장 성공",
         data
@@ -11,79 +17,96 @@ export const dataAdd = async (req: Request, res: Response) => {
 };
 
 export const dataSelectLine = async (req: Request, res: Response) => {
-    const { startDate, endDate } = req.query;
-    const data = await CHART.aggregate([
-        {
-            $project: {
-                date: {$dateToString: {format: "%Y-%m-%d", date: "$date"}},
-                value1: 1,
-                value2: 1
-            },  
-        },
-        {
-            $match: {
-                date: {$gte: startDate, $lte: endDate}
+    try {
+        const conn = await dbConnect();
+        const chartModel = await conn.model("CHART", ChartSchema)
+        // const chartModel = conn.model("CHART", ChartSchema)
+        const { startDate, endDate } = req.query;
+        const data = await chartModel.aggregate([
+            {
+                $project: {
+                    date: {$dateToString: {format: "%Y-%m-%d", date: "$date"}},
+                    value1: 1,
+                    value2: 1
+                },  
+            },
+            {
+                $match: {
+                    date: {$gte: startDate, $lte: endDate}
+                }
+            },
+            {
+                $sort: { date: 1 }
             }
-        },
-        {
-            $sort: { date: 1 }
+        ]);
+        const labels: string[] = [];
+        const value1: number[] = [];
+        const value2: number[] = [];
+        
+        for (let i of data) {
+            labels.push(i.date);
+            value1.push(i.value1);
+            value2.push(i.value2);
         }
-    ]);
-    const labels: string[] = [];
-    const value1: number[] = [];
-    const value2: number[] = [];
-
-    for (let i of data) {
-        labels.push(i.date);
-        value1.push(i.value1);
-        value2.push(i.value2);
+        await dbClose(conn);
+        return res.status(200).json({
+            message: "조회 성공",
+            labels: labels,
+            datasets: [
+                { label: "value1", data: value1 },
+                { label: "value2", data: value2 }
+            ]
+        })
+    } catch (error) {
+        
     }
-
-    return res.status(200).json({
-        message: "조회 성공",
-        labels: labels,
-        datasets: [
-            { label: "value1", data: value1 },
-            { label: "value2", data: value2 }
-        ]
-    })
 };
 
 export const dataSelectMulti = async (req: Request, res: Response) => {
-    const { startDate, endDate } = req.query;
-    const data = await CHART.aggregate([
-        {
-            $project: {
-                date: {$dateToString: {format: "%Y-%m-%d", date: "$date"}},
-                value1: 1,
-                value2: 1
-            },  
-        },
-        {
-            $match: {
-                date: {$gte: startDate, $lte: endDate}
+    try {
+        // const conn: Connection = await dbConnect();
+        const conn = await dbConnect();
+        const chartModel = await conn.model("CHART", ChartSchema)
+        // const chartModel = conn.model("CHART", ChartSchema)
+        
+        const { startDate, endDate } = req.query;
+        const data = await chartModel.aggregate([
+            {
+                $project: {
+                    date: {$dateToString: {format: "%Y-%m-%d", date: "$date"}},
+                    value1: 1,
+                    value2: 1
+                },  
+            },
+            {
+                $match: {
+                    date: {$gte: startDate, $lte: endDate}
+                }
+            },
+            {
+                $sort: { date: 1 }
             }
-        },
-        {
-            $sort: { date: 1 }
+        ]);
+        const labels: string[] = [];
+        const value1: number[] = [];
+        const value2: number[] = [];
+        
+        for (let i of data) {
+            labels.push(i.date);
+            value1.push(i.value1);
+            value2.push(i.value2);
         }
-    ]);
-    const labels: string[] = [];
-    const value1: number[] = [];
-    const value2: number[] = [];
-
-    for (let i of data) {
-        labels.push(i.date);
-        value1.push(i.value1);
-        value2.push(i.value2);
+        
+        await dbClose(conn);
+        return res.status(200).json({
+            message: "조회 성공",
+            labels: labels,
+            datasets: [
+                { type: "line", label: "value1", data: value1 },
+                { type: "bar", label: "value2", data: value2 }
+            ]
+        })
+    } catch (error) {
+        
     }
-
-    return res.status(200).json({
-        message: "조회 성공",
-        labels: labels,
-        datasets: [
-            { type: "line", label: "value1", data: value1 },
-            { type: "bar", label: "value2", data: value2 }
-        ]
-    })
 };

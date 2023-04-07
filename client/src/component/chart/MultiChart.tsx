@@ -35,7 +35,7 @@ export const options = {
 }
 
 interface ChartProps {
-    chartData: ChartState
+    chartData: ChartState["multiChart"]
 }
 
 const colors = ["rgb(255, 99, 132)", "rgb(53, 162, 235)"];

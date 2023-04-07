@@ -3,23 +3,45 @@ import { RootState } from "../app/store";
 import axios from "axios";
 
 export interface ChartState {
-    labels: string[],
-    datasets: {
-        type?: string,
-        label: string,
-        data: number[],
-    }[],
-    title?: string
+    lineChart: {
+        labels: string[],
+        datasets: {
+            type?: string,
+            label: string,
+            data: number[],
+        }[],
+        title?: string
+    },
+    multiChart: {
+        labels: string[],
+        datasets: {
+            type?: string,
+            label: string,
+            data: number[],
+        }[],
+        title?: string
+    }
 }
 
 const initialState: ChartState = {
-    labels: [],
-    datasets: [{
-        type: '',
-        label: '',
-        data: []
-    }],
-    title: ''
+    lineChart: {
+        labels: [],
+        datasets: [{
+            type: '',
+            label: '',
+            data: []
+        }],
+        title: ''
+    },
+    multiChart: {
+        labels: [],
+        datasets: [{
+            type: '',
+            label: '',
+            data: []
+        }],
+        title: ''
+    }
 }
 
 export const dataSelectLineAsync = createAsyncThunk(
@@ -46,15 +68,16 @@ export const chartSlice = createSlice({
     extraReducers: (builder) => {
         builder
         .addCase(dataSelectLineAsync.fulfilled, (state, action) => {
-            state.labels = action.payload.labels;
-            state.datasets = action.payload.datasets;
+            state.lineChart.labels = action.payload.labels;
+            state.lineChart.datasets = action.payload.datasets;
         })
         .addCase(dataSelectMultiAsync.fulfilled, (state, action) => {
-            state.labels = action.payload.labels;
-            state.datasets = action.payload.datasets;
+            state.multiChart.labels = action.payload.labels;
+            state.multiChart.datasets = action.payload.datasets;
         })
     }
 });
 
-export const selectData = (state: RootState) => state.chart;
+export const selectLineData = (state: RootState) => state.chart.lineChart;
+export const selectMultiData = (state: RootState) => state.chart.multiChart;
 export default chartSlice.reducer;

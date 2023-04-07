@@ -9,9 +9,9 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT;
 
-mongoose.connect(process.env.DB_URL + "/" + process.env.DB_NAME)
-    .then(() => console.log('✅ MongoDB Connect Success..'))
-    .catch(e => console.log(e))
+// mongoose.connect(process.env.DB_URL + "/" + process.env.DB_NAME)
+//     .then(() => console.log('✅ MongoDB Connect Success..'))
+//     .catch(e => console.log(e))
 
 
 app.use(bodyParser.json())

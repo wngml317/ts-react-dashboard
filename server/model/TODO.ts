@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 mongoose.pluralize(null);
 
-const TodoSchema = new mongoose.Schema({
+export const TodoSchema = new mongoose.Schema({
     text: {
         type: String,
         require: true

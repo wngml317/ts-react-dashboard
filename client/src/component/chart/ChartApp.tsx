@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import LineChart from "./LineChart";
 import styled from "styled-components";
 import { useAppDispatch, useAppSelector } from "../../app/hook";
-import { dataSelectLineAsync, dataSelectMultiAsync, selectData } from "../../slice/chartSlice";
+import { dataSelectLineAsync, dataSelectMultiAsync, selectLineData, selectMultiData } from "../../slice/chartSlice";
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import { AiFillCalendar } from "react-icons/ai"
@@ -63,7 +63,9 @@ const ChartApp = () => {
         dispatch(dataSelectMultiAsync({startDate: new Date(new Date().setMonth(new Date().getMonth() -1)), endDate: new Date()}))
     }, [dispatch])
 
-    const chartData = useAppSelector(selectData);
+    const chartLineData = useAppSelector(selectLineData);
+    const chartMultiData = useAppSelector(selectMultiData);
+
 
     const [startDate, setStartDate] = useState(new Date(new Date().setMonth(new Date().getMonth() -1)));
     const [endDate, setEndDate] = useState(new Date());
@@ -88,8 +90,8 @@ const ChartApp = () => {
             <ShowButton onClick={() => showChart()}>조회</ShowButton>
             </DateContainer>
 
-            <LineChart chartData={chartData} />
-            <MultiChart chartData={chartData} />
+            <LineChart chartData={chartLineData} />
+            <MultiChart chartData={chartMultiData} />
         </ChartWrapper>
     )
 }

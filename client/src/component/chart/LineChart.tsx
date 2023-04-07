@@ -32,7 +32,7 @@ export const options = {
 }
 
 interface ChartProps {
-    chartData: ChartState
+    chartData: ChartState["lineChart"]
 }
 
 const colors = ["rgb(255, 99, 132)", "rgb(53, 162, 235)"];

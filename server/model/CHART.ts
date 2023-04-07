@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 mongoose.pluralize(null);
 
-const ChartSchema = new mongoose.Schema({
+export const ChartSchema = new mongoose.Schema({
     date: {
         type: Date,
         require: true,
