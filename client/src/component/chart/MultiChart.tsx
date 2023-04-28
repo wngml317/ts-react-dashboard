@@ -42,6 +42,7 @@ const colors = ["rgb(255, 99, 132)", "rgb(53, 162, 235)"];
 const backColors = ["rgb(255, 99, 132, 0.5)", "rgb(53, 162, 235, 0.5)"];
 
 const MultiChart = ({chartData}: ChartProps) => {
+    if (chartData.datasets === undefined) return(<></>);
     const data = {
         labels: chartData.labels,
         datasets: chartData.datasets.map((dataset, i) => ({

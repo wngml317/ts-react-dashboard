@@ -1,4 +1,7 @@
-import mongoose, { connect, Mongoose, Connection } from "mongoose"
+import mongoose, { Connection } from "mongoose";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 export const dbConnect = async (): Promise<Connection | any> => {
     try {
@@ -10,13 +13,6 @@ export const dbConnect = async (): Promise<Connection | any> => {
         return error;
     }
 }
-
-// export const dbConnect = () => {
-    
-//     const connection = mongoose.createConnection(process.env.DB_URL + "/" + process.env.DB_Name);
-//     console.log('✅ MongoDB Connect Success..');
-//     return connection;
-// }
 
 export const dbClose = async (conn: Connection) => {
     try {

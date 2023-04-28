@@ -27,6 +27,7 @@ interface TodoHeadProps {
 }
 
 const TodoHead = ({todoList}: TodoHeadProps) => {
+    if (todoList === undefined) todoList = []
     const today = new Date();
     const dateString = today.toLocaleDateString("ko-KR",{
         year: "numeric",

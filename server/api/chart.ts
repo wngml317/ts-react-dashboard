@@ -1,26 +1,32 @@
 import { Request, Response } from "express";
-import CHART, { ChartSchema } from "../model/CHART";
+import { ChartSchema } from "../model/CHART";
 import { dbClose, dbConnect } from "../connect/connect";
-import mongoose, { Connection } from "mongoose";
+import mongoose from "mongoose";
 
 
 mongoose.pluralize(null);
 export const dataAdd = async (req: Request, res: Response) => {
-    const conn = await dbConnect();
-    const data = new CHART(req.body);
-    await data.save();
-    await dbClose(conn);
-    return res.status(200).json({
-        message: "저장 성공",
-        data
-    })
+    try {
+        const conn = await dbConnect();
+        const chartModel = await conn.model("CHART", ChartSchema)
+        const data = new chartModel(req.body);
+        await data.save();
+        await dbClose(conn);
+        return res.status(200).json({
+            message: "저장 성공",
+            data
+        })
+    } catch (error) {
+        return res.status(500).json({
+            error
+        })
+    }
 };
 
 export const dataSelectLine = async (req: Request, res: Response) => {
     try {
         const conn = await dbConnect();
         const chartModel = await conn.model("CHART", ChartSchema)
-        // const chartModel = conn.model("CHART", ChartSchema)
         const { startDate, endDate } = req.query;
         const data = await chartModel.aggregate([
             {
@@ -58,17 +64,16 @@ export const dataSelectLine = async (req: Request, res: Response) => {
             ]
         })
     } catch (error) {
-        
+        return res.status(500).json({
+            error
+        })
     }
 };
 
 export const dataSelectMulti = async (req: Request, res: Response) => {
     try {
-        // const conn: Connection = await dbConnect();
         const conn = await dbConnect();
         const chartModel = await conn.model("CHART", ChartSchema)
-        // const chartModel = conn.model("CHART", ChartSchema)
-        
         const { startDate, endDate } = req.query;
         const data = await chartModel.aggregate([
             {
@@ -107,6 +112,8 @@ export const dataSelectMulti = async (req: Request, res: Response) => {
             ]
         })
     } catch (error) {
-        
+        return res.status(500).json({
+            error
+        })
     }
 };
