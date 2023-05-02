@@ -1,4 +1,4 @@
-# ts-react-dashboard
+# 리액트 대시보드
 
 ## Installation
 ```
