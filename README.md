@@ -1,4 +1,4 @@
-# 리액트 대시보드
+### 리액트 대시보드
 
 ## Installation
 ```
@@ -26,9 +26,8 @@ $ cd ..
 $ npm run server
 ```
 
-
-<!-- # Version
+## Version
 ```
 chart.js 3.9.1
 react-script 4.0.3
-``` -->
+```
