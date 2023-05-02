@@ -37,5 +37,5 @@ react-script  ::   4.0.3
 - DB_URL
 - DB_NAME
 - PORT
-- NODE_ENV="production"
+- NODE_ENV
 ```
