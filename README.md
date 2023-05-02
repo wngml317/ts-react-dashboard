@@ -28,6 +28,6 @@ $ npm run server
 
 ## Version
 ```
-chart.js 3.9.1
-react-script 4.0.3
+chart.js      ::   3.9.1
+react-script  ::   4.0.3
 ```
