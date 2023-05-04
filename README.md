@@ -3,26 +3,25 @@
 ## Installation
 ```
 $ git clone https://github.com/wngml317/ts-react-dashboard
+
 $ cd ts-react-dashboard
+$ npm install 
+
+$ cd client
+$ npm install
+```
+
+# development (개발)
+```
 $ npm start
 ```
 
-## Backend
-```
-$ npm install
-```
-
-## Frontend
-```
-$ cd client
-$ npm install
-```
-
-## Build
+# production (배포)
 ```
 $ cd client
 $ npm run build
-$ cd ..
+
+$ cd ts-react-dashboard
 $ npm run server
 ```
 
