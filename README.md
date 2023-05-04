@@ -11,12 +11,12 @@ $ cd client
 $ npm install
 ```
 
-# development (개발)
+## development (개발)
 ```
 $ npm start
 ```
 
-# production (배포)
+## production (배포)
 ```
 $ cd client
 $ npm run build
