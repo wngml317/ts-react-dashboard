@@ -28,7 +28,7 @@ $ npm run server
 ## Version
 ```
 chart.js      ::   3.9.1
-react-script  ::   4.0.3
+react-scripts ::   4.0.3
 ```
 
 ## env 파일 생성
