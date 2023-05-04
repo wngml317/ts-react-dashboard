@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import LineChart from "./LineChart";
+import MultiChart from "./MultiChart";
 import styled from "styled-components";
 import { useAppDispatch, useAppSelector } from "../../app/hook";
 import { dataSelectLineAsync, dataSelectMultiAsync, selectLineData, selectMultiData } from "../../slice/chartSlice";
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import { AiFillCalendar } from "react-icons/ai"
-import MultiChart from "./MultiChart";
 
 const ChartWrapper = styled.div`
     width: 100%;

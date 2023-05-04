@@ -68,7 +68,6 @@ interface TodoItemProps {
 const TodoItem = ({todo, onToggle, onRemove}: TodoItemProps) => {
     return (
         <TodoItemBlock>
-
             <CheckCircle key={todo._id} done={todo.done} onClick={() => onToggle({_id: todo._id, done: todo.done})}>
                 {todo.done && <MdDone />}
             </CheckCircle>
